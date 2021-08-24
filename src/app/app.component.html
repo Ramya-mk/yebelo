@@ -1,6 +1,10 @@
+<div class="container">
+  <h1 class="text-center heading">Fruits Kingdom</h1>
+
+
 <div class="row">
   <div class="col-md-12">
-    <div class="float-right">
+    <div class="float-left">
       <mat-form-field appearance='outline'>
         <mat-label>Choose Categories</mat-label>
         <mat-select  #choosedCategory (valueChange)="getProductsBasedOnCategory(choosedCategory.value)">
@@ -12,12 +16,12 @@
   </div>
 </div>
 
-<div class="container-fluid">
   <div class="row">
     <ng-container *ngIf="!filteredProducts" >
       <div class="col-md-3"  *ngFor="let product of productList">
-        <div class="  card" style="width: 18rem;" >
-          <img class="card-img-top" [src]="product.image" alt="Card image cap">
+        <div class="card "
+       >
+          <img class="card-img-top" [src]="product.image" alt="Card image cap" style="height: 250px; ">
           <div class="card-body">
             Product Name :{{product.p_name}} <br>
             ProductId:{{product.p_id}} <br>
@@ -25,6 +29,7 @@
             product Availability : {{product.p_availability}} <br>
             product Details : {{product.p_details}} <br>
             product Category : {{product.p_category}} <br>
+            <button class="btn btn-primary"  data-toggle="modal" data-target="#modelId" (click)="edit(product.p_availability)">edit</button>
           </div>
         </div>
       </div>
@@ -33,7 +38,7 @@
     <ng-container *ngIf="filteredProducts?.length>0">
       <div class="col-md-3" *ngFor="let product of filteredProducts">
         <div class="card" style="width: 18rem;"  >
-          <img class="card-img-top" [src]="product.image" alt="Card image cap">
+          <img class="card-img-top" [src]="product.image" alt="Card image cap"  style="height: 250px; ">
           <div class="card-body">
             Product Name :{{product.p_name}} <br>
             ProductId:{{product.p_id}} <br>
@@ -41,9 +46,36 @@
             product Availability : {{product.p_availability}} <br>
             product Details : {{product.p_details}} <br>
             product Category : {{product.p_category}} <br>
+            <button class="btn btn-primary"  data-toggle="modal" data-target="#modelId" (click)="edit(product.p_availability)">edit</button>
           </div>
         </div>
       </div>
     </ng-container>
   </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modelId"tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Quantity</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #productForm="ngForm" (ngSubmit)="onAddQuantity(productForm.value)" >
+          <div class="form-group">
+            <input type="text" name="p_availability"  [(ngModel)]="quantity" class="form-control">
+          </div>
+          <button type="button" class="btn btn-secondary ml-3 float-right" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary float-right">Update</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -14,6 +14,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     BrowserAnimationsModule,
     SharedModule,
     AppRoutingModule,
+
   ],
   providers: [
 

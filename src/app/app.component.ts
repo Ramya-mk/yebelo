@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ProductService } from './product.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { ProductService } from './product.service';
 })
 export class AppComponent {
   productList = [];
-  filteredProducts
+  filteredProducts;
+  quantity;
   @ViewChild('choosedCategory') choosedCategory: ElementRef
   constructor(private productService: ProductService) { }
 
@@ -30,10 +32,16 @@ export class AppComponent {
 
   getProductsBasedOnCategory(choosedCategory) {
 
- this.filteredProducts=   this.productList.filter(category=>{
+    this.filteredProducts = this.productList.filter(category => {
 
- return category.p_category === choosedCategory?true:false
-});
+      return category.p_category === choosedCategory ? true : false
+    });
+  }
+  edit(quantity) {
+    this.quantity = quantity;
   }
 
+  onAddQuantity(productForm) {
+    console.log(productForm);
+  }
 }
