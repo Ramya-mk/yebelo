@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="float-right">
+      <mat-form-field appearance='outline'>
+        <mat-label>Choose Categories</mat-label>
+        <mat-select  #choosedCategory (valueChange)="getProductsBasedOnCategory(choosedCategory.value)">
+          <mat-option value="Premium">Premium</mat-option>
+          <mat-option value="Tamilnadu">Tamilnadu</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <ng-container *ngIf="!filteredProducts" >
+      <div class="col-md-3"  *ngFor="let product of productList">
+        <div class="  card" style="width: 18rem;" >
+          <img class="card-img-top" [src]="product.image" alt="Card image cap">
+          <div class="card-body">
+            Product Name :{{product.p_name}} <br>
+            ProductId:{{product.p_id}} <br>
+            product Cost :{{product.p_cost}} <br>
+            product Availability : {{product.p_availability}} <br>
+            product Details : {{product.p_details}} <br>
+            product Category : {{product.p_category}} <br>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="filteredProducts?.length>0">
+      <div class="col-md-3" *ngFor="let product of filteredProducts">
+        <div class="card" style="width: 18rem;"  >
+          <img class="card-img-top" [src]="product.image" alt="Card image cap">
+          <div class="card-body">
+            Product Name :{{product.p_name}} <br>
+            ProductId:{{product.p_id}} <br>
+            product Cost :{{product.p_cost}} <br>
+            product Availability : {{product.p_availability}} <br>
+            product Details : {{product.p_details}} <br>
+            product Category : {{product.p_category}} <br>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
